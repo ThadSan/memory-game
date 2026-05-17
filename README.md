@@ -16,13 +16,20 @@
 A solo Memory card game built in vanilla JavaScript.  
 The player must find all matching sets of 4 identical cards before time runs out.
 
-## Planned Features
-- Welcome form (username, difficulty level, card collection)
-- Timed gameplay with card flip logic
-- Score submission to remote server
+## Additional Features
+
+The following features were added to improve usability and the overall player experience:
+* **Replay Mode:** Review and analyze your last game after it ends.
+* **Leaderboard:** View the best completion times based on the difficulty level.
+* **Light / Dark Mode:** Toggle between themes for better visual comfort.
+* **Pause Mode:** Stop the timer and temporarily hide the cards to prevent cheating.
+* **End-of-Game Messages:** Display custom screens for victory, defeat, or quitting.
+* **Audio Management:** Toggle background music and sound effects with a mute option.
 
 ## Tech Stack
+
 - HTML5 / CSS3 / Vanilla JavaScript
 
 ## How to Run
+
 Open `index.html` in any browser. No build step required.
