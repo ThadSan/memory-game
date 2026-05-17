@@ -8,21 +8,27 @@ export class DOMManager {
   createCards(images) {
     const gameBoard = document.querySelector('.game-board');
 
-    // Todo À Compléter
 
-    /**
-     * Voici un exemple de contenu de card permettant de contenir une partie masqué
-     * et l'image qui doit être révélée.
-     *
-     <div class="card-inner">
-     <div class="card-front">
-     <img src="./assets/images/mask1.jpg" alt="Hidden card">
-     </div>
-     <div class="card-back hidden">
-     <img src="${image.url}" alt="${image.name}">
-     </div>
-     </div>
-     */
+    gameBoard.innerHTML = '';
 
+    images.forEach((image)=> {
+      const card = document.createElement('div');
+
+      card.classList.add('card');
+
+      card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="./assets/images/mask1.jpg" alt="hidden card">
+        </div>
+
+        <div class="card-back">
+          <img src="${image.url}" alt="${image.name}">
+        </div>  
+      </div>
+      `;
+
+      gameBoard.appendChild(card);
+    });
   }
 }
