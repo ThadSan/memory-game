@@ -1,72 +1,78 @@
 import {imageCollections} from './ImageCollection.js';                                                                                                                                                          
-import {ApiService} from './ApiService.js';                                                                                                                                                                     
-                                                                                                                                                                                                                
-export class Game {                                                                                                                                                                                             
-  #id;                                                                                                                                                                                                        
+import {ApiService} from './ApiService.js';
+
+export class Game {
+  #id;
   #cmp = 0;
-  #ref;
+  #ref;                                                                                                                                                                                                         
   #click = null;
-  #pairesRestantes = 0;
-  #gameEnded = false;                                                                                                                                                                                           
-  
-  async endGame(won) {                                                                                                                                                                                          
-    if (this.#gameEnded) return;                                                                                                                                                                              
-    this.#gameEnded = true;
+  #pairesRestantes = 0;                                                                                                                                                                                         
+  #gameEnded = false;
+  #historiques = [];
+
+  async endGame(won) {
+    if (this.#gameEnded) return;
+    this.#gameEnded = true;                                                                                                                                                                                     
     clearInterval(this.#ref);
+    document.querySelector('#end-screen').classList.remove('hidden');                                                                                                                                           
+    document.querySelector('#end-message').textContent = won ? 'Bravo !' : 'Dommage !';
+    document.querySelector('#end-coups').textContent = 'coups : ' + (this.#historiques.length / 2);                                                                                                             
+    document.querySelector('#end-time').textContent = 'temps : ' + this.#cmp + ' sec';                                                                                                                          
     try {                                                                                                                                                                                                       
-      const result = await ApiService.updateGameResult(this.#id, this.#pairesRestantes);
+      const result = await ApiService.updateGameResult(this.#id, this.#pairesRestantes);                                                                                                                        
       console.log('Fin de partie:', result);                                                                                                                                                                    
-    } catch (error) {                                                                                                                                                                                         
+    } catch (error) {                                                                                                                                                                                           
       console.error('Error:', error);
-      alert(error.message || 'Erreur lors de la fin de la partie');
-    }
+      alert(error.message || 'Erreur lors de la fin de la partie');                                                                                                                                             
+    }           
   }
 
-  startGame(id, difficulty, collection, domManager) {
+  startGame(id, difficulty, collection, domManager) {                                                                                                                                                           
     this.#id = id;
     this.#cmp = 0;
-    this.#pairesRestantes = difficulty;
-    this.#gameEnded = false;
-
+    this.#historiques = [];
+    this.#pairesRestantes = difficulty;                                                                                                                                                                         
+    this.#gameEnded = false;           
+                            
     const img = imageCollections[collection];
-    const diff = img.slice(0, difficulty);
-    const copie = diff.concat(diff);
-
+    const diff = img.slice(0, difficulty);                                                                                                                                                                      
+    const copie = diff.concat(diff);      
+                                                                                                                                                                                                                
     for (let i = copie.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [copie[i], copie[j]] = [copie[j], copie[i]];
-    }
-
-    domManager.createCards(copie);
-    this.#ref = setInterval(() => {
-      this.#cmp++;
-      document.querySelector('#chrono').textContent = this.#cmp;
-    }, 1000);
-
-    document.querySelectorAll('.card').forEach(card => {                                                                                                                                                        
-      card.addEventListener('click', () => {
-        if (this.#click == null) {                                                                                                                                                                              
-          this.#click = card;                                                                                                                                                                                 
+      [copie[i], copie[j]] = [copie[j], copie[i]];  
+    }                                                                                                                                                                                                           
+      
+    domManager.createCards(copie);                                                                                                                                                                              
+    this.#ref = setInterval(() => {                                                                                                                                                                             
+      this.#cmp++;                 
+      document.querySelector('#chrono').textContent = this.#cmp;                                                                                                                                                
+    }, 1000);                                                   
+              
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {                                                                                                                                                                    
+        if (this.#click == null) {          
+          this.#click = card;                                                                                                                                                                                   
           card.classList.add('flip');
         } else if (card === this.#click) {
-          return;                                                                                                                                                                                               
-        } else {
-          if (this.#click.querySelector('.card-back img').src === card.querySelector('.card-back img').src) {                                                                                                   
-            card.classList.add('flip');                                                                                                                                                                       
-            this.#click = null;
-            this.#pairesRestantes--;                                                                                                                                                                            
-            if (this.#pairesRestantes === 0) this.endGame(true);
-          } else {                                                                                                                                                                                              
-            card.classList.add('flip');                                                                                                                                                                       
+          return;                         
+        } else {                                                                                                                                                                                                
+          if (this.#click.querySelector('.card-back img').src === card.querySelector('.card-back img').src) {
+            card.classList.add('flip');                                                                                                                                                                         
+            this.#click = null;        
+            this.#pairesRestantes--;
+            if (this.#pairesRestantes === 0) this.endGame(true);                                                                                                                                                
+          } else {                                              
+            card.classList.add('flip');                                                                                                                                                                         
             const firstCard = this.#click;
             this.#click = null;                                                                                                                                                                                 
-            setTimeout(() => {
+            setTimeout(() => { 
               card.classList.remove('flip');                                                                                                                                                                    
-              firstCard.classList.remove('flip');                                                                                                                                                             
-            }, 1000);
-          }
+              firstCard.classList.remove('flip');
+            }, 1000);                            
+          }          
         }
-      });
-    });                                                                                                                                                                                                         
-  }
+      });                                                                                                                                                                                                       
+    });
+  }                                                                                                                                                                                                             
 } 

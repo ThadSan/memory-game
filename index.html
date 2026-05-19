@@ -1,22 +1,22 @@
-<!DOCTYPE html>                                                                                                                                                                                                 
+                                                                                                                                                                                                                
+<!DOCTYPE html> 
 <html lang="fr">
-<head>                                                                                                                                                                                                          
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeu de Memory</title>                                          
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                                                        
+  <title>Jeu de Memory</title>
   <link rel="stylesheet" href="css/style.css">                                                                                                                                                                  
-  <script src="js/app.js" type="module"></script>
-</head>                                                                                                                                                                                                         
+  <script src="js/app.js" type="module"></script>                                                                                                                                                               
+</head>
 <body>                                                                                                                                                                                                          
-<header>
-  <h1>Jeu de Memory</h1>                                                                                                                                                                                        
+<header>        
+  <h1>Jeu de Memory</h1>
   <button id="themeToggle">🌙</button>
-</header>                             
                                                                                                                                                                                                                 
 <div class="setup-form">
   <h2>Démarrer une nouvelle partie</h2>                                                                                                                                                                         
   <form class="game-form">             
-    <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo">                                                                                                                                          
+    <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo">
     <select name="difficulté" id="difficulty">                        
       <option value="4">Easy</option>                                                                                                                                                                           
       <option value="5">Medium</option>
@@ -25,19 +25,30 @@
     </select>                                                                                                                                                                                                   
     <select name="collection" id="collection">
       <option value="animals">animals</option>                                                                                                                                                                  
-      <option value="fruits">fruits</option>                                                                                                                                                                    
+      <option value="fruits">fruits</option>  
       <option value="cars">cars</option>    
     </select>                                                                                                                                                                                                   
     <button type="submit">Submit</button>
-  </form>                                
-</div>                                                                                                                                                                                                          
+  </form>                                                                                                                                                                                                       
+</div>          
       
-<div class="game-area hidden">                                                                                                                                                                                  
+<div class="game-area hidden">
   <div class="game-area-header">
     <span id="chrono" class="game-timer"></span>
     <button id="abandon">abandon</button>                                                                                                                                                                       
   </div>                                 
   <div class="game-board"></div>                                                                                                                                                                                
-</div>                                                                                                                                                                                                          
-</body>
-</html> 
+</div>                          
+                                                                                                                                                                                                                
+<!-- sert pour l'ecran de fin-partie -->
+<div id="end-screen" class="hidden">                                                                                                                                                                            
+  <div id="end-panel">              
+    <p id="end-message"></p>                                                                                                                                                                                    
+    <p id="end-time"></p>   
+    <p id="end-coups"></p>
+    <button id="btn-replay">Revoir la partie</button>                                                                                                                                                           
+    <button id="btn-new-game">Nouvelle partie</button>
+  </div>                                                                                                                                                                                                        
+</div>          
+</body>                                                                                                                                                                                                         
+</html>  
