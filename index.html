@@ -22,32 +22,43 @@
       <option value="5">Medium</option>
       <option value="6">Hard</option>
       <option value="8">Insane</option>
-
     </select>
     <select name="collection" id="collection">
       <option value="animals">animals</option>
       <option value="fruits">fruits</option>
       <option value="cars">cars</option>
-
     </select>
-    <button type="submit">Submit</button>
+    <button type="submit">Jouer</button>
   </form>
 </div>
 
-
-
+<div class="leaderboard">
+  <div class="leaderboard-header">
+    <h2>🏆 Classement</h2>
+    <select id="lb-difficulty">
+      <option value="4">Easy</option>
+      <option value="5">Medium</option>
+      <option value="6">Hard</option>
+      <option value="8">Insane</option>
+    </select>
+  </div>
+  <table id="lb-table">
+    <thead>
+      <tr><th>#</th><th>Joueur</th><th>Temps</th></tr>
+    </thead>
+    <tbody id="lb-body"></tbody>
+  </table>
+</div>
 
 <div class="game-area hidden">
   <div class="game-area-header">
-    <button id="stop-replay" class="hidden replay-button" >Stop replay</button>
+    <button id="stop-replay" class="hidden replay-button">Stop replay</button>
     <span id="chrono" class="game-timer"></span>
-    <button id="abandon">abandon</button>
+    <button id="abandon">Abandon</button>
   </div>
-
   <div class="game-board"></div>
 </div>
 
-<!-- sert pour l'ecran de fin-partie -->
 <div id="end-screen" class="hidden">
   <div id="end-panel">
     <p id="end-message"></p>
@@ -57,7 +68,6 @@
     <button id="btn-new-game">Nouvelle partie</button>
   </div>
 </div>
-
 
 </body>
 </html>

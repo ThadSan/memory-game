@@ -1,63 +1,52 @@
 import {imageCollections} from './ImageCollection.js';
 import {ApiService} from './ApiService.js';
 
-
 export class Game {
-  /**
-   * @type {number} id identifiant de la partie en cours
-   */
   #id;
+  #pseudo;
+  #difficulty;
   #cmp=0;
   #ref;
   #click = null;
   #pairesRestantes=0;
-  #historiques=[ ] //va permettre de stocker  le replay
+  #historiques=[]
   #enReplay = false;
   #gameEnded=false;
 
-
-
-
   async endGame(won) {
-
     if (this.#gameEnded) return;
     this.#gameEnded = true;
 
-    console.log(this.#id)
     clearInterval(this.#ref);
 
-    document.querySelector('#end-screen').classList.remove('hidden') // permet d'afficher l'ecran de fin-partie
-    document.querySelector('#end-message').textContent = won ? 'Bravo !' : 'Dommage !'; // permet de savoir si il a perdue au abandonner
-    document.querySelector('#end-coups').textContent = this.#historiques.length / 2 + ' coups';  //permet d'afficher le nombre de coups
-    document.querySelector('#end-time').textContent = 'temps'+ this.#cmp +'sec'; // permet d'afficher le temps
+    document.querySelector('#end-screen').classList.remove('hidden')
+    document.querySelector('#end-message').textContent = won ? 'Bravo !' : 'Dommage !';
+    document.querySelector('#end-coups').textContent = this.#historiques.length / 2 + ' coups';
+    document.querySelector('#end-time').textContent = 'Temps : '+ this.#cmp +' sec';
 
+    if (won) {
+      const scores = JSON.parse(localStorage.getItem('memory-scores') || '[]');
+      scores.push({ name: this.#pseudo, difficulty: this.#difficulty, time: this.#cmp });
+      localStorage.setItem('memory-scores', JSON.stringify(scores));
+    }
 
     try {
       const result = await ApiService.updateGameResult(this.#id, this.#pairesRestantes);
       console.log('Fin de partie:', result);
     } catch (error) {
       console.error('Error:', error);
-      alert(error.message || 'Erreur lors de la fin de la partie');
     }
-
-
-
-
-
   }
 
-  /**
-   * Start a new game.
-   * @param {number} id - The game ID.
-   */
-  startGame(id,difficulty,collection,domManager) {
+  startGame(id, pseudo, difficulty, collection, domManager) {
     this.#id = id;
+    this.#pseudo = pseudo;
+    this.#difficulty = difficulty;
     this.#historiques = [];
     this.#cmp = 0;
     this.#pairesRestantes = difficulty;
     this.#gameEnded = false;
 
-    // Todo À commpléter
     const img = imageCollections[collection]
     const diff = img.slice(0, difficulty);
     const copie = diff.concat(diff)
@@ -70,9 +59,7 @@ export class Game {
     this.#ref = setInterval(() => {
       this.#cmp++
       document.querySelector('#chrono').textContent = this.#cmp
-
     }, 1000);
-
 
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
@@ -102,12 +89,8 @@ export class Game {
         }
       })
     })
-
-
-
   }
 
-  //  Rejoue automatiquement la partie en simulant chaque clic avec 1s de délai
   replay() {
     document.querySelector('#abandon').classList.add('hidden');
     document.querySelector('#stop-replay').classList.remove('hidden');
@@ -140,9 +123,6 @@ export class Game {
         }, 800);
       }, 800);
     };
-    setTimeout(step, 500);// On rajoute un délai de 0.5 sec car sinon la première carte se retourne avant même le début du replay
+    setTimeout(step, 500);
   }
-
-
-
 }
