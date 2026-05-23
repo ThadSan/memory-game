@@ -18,6 +18,8 @@ document.querySelector('.game-form').addEventListener('submit', async function (
   try {
     const data = await ApiService.createGame(pseudo, difficulty, collection);
     game.startGame(data.id, pseudo, difficulty, collection, domManager);
+    domManager.showFlipButton();
+    domManager.startGameMusic();
     document.querySelector('.setup-form').classList.add('hidden');
     document.querySelector('.leaderboard').classList.add('hidden');
     document.querySelector('.game-area').classList.remove('hidden');
@@ -47,6 +49,8 @@ document.querySelector('#btn-new-game').addEventListener('click', () => {
   document.querySelector('#end-screen').classList.add('hidden');
   document.querySelector('.setup-form').classList.remove('hidden');
   document.querySelector('.leaderboard').classList.remove('hidden');
+  domManager.hideFlipButton();
+  domManager.stopGameMusic();
   refreshLeaderboard();
 });
 
@@ -56,6 +60,8 @@ document.querySelector('#stop-replay').addEventListener('click', () => {
   document.querySelector('.game-area').classList.add('hidden');
   document.querySelector('.setup-form').classList.remove('hidden');
   document.querySelector('.leaderboard').classList.remove('hidden');
+  domManager.hideFlipButton();
+  domManager.stopGameMusic();
 });
 
 function refreshLeaderboard() {

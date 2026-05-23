@@ -66,24 +66,27 @@ export class Game {
         if (this.#enReplay) return;
         if (this.#click == null) {
           this.#historiques.push([...document.querySelectorAll('.card')].indexOf(card));
-          this.#click = card
-          card.classList.add('flip')
+          this.#click = card;
+          card.classList.add('flip');
+          domManager.playFlip();
         } else if (card === this.#click) {
           return;
         } else {
           this.#historiques.push([...document.querySelectorAll('.card')].indexOf(card));
           if (this.#click.querySelector('.card-back img').src === card.querySelector('.card-back img').src) {
-            card.classList.add('flip')
-            this.#click = null
+            card.classList.add('flip');
+            domManager.playFlip();
+            this.#click = null;
             this.#pairesRestantes--;
             if (this.#pairesRestantes === 0) this.endGame(true);
           } else {
-            card.classList.add('flip')
+            card.classList.add('flip');
+            domManager.playFlip();
             const firstCard = this.#click;
             this.#click = null;
             setTimeout(() => {
-              card.classList.remove('flip')
-              firstCard.classList.remove('flip')
+              card.classList.remove('flip');
+              firstCard.classList.remove('flip');
             }, 1000)
           }
         }
