@@ -55,6 +55,7 @@ document.querySelector('#btn-new-game').addEventListener('click', () => {
 });
 
 document.querySelector('#stop-replay').addEventListener('click', () => {
+  game.stopReplay();
   document.querySelector('#stop-replay').classList.add('hidden');
   document.querySelector('#abandon').classList.remove('hidden');
   document.querySelector('.game-area').classList.add('hidden');
@@ -79,9 +80,18 @@ function refreshLeaderboard() {
           <td class="lb-rank">${medals[i] ?? i + 1}</td>
           <td class="lb-name">${s.name}</td>
           <td class="lb-time">${s.time}s</td>
+          <td class="lb-coups">${s.coups ?? '-'}</td>
         </tr>`).join('')
     : '<tr><td colspan="3" class="lb-empty">Aucun temps pour ce niveau.</td></tr>';
 }
 
 document.querySelector('#lb-difficulty').addEventListener('change', refreshLeaderboard);
+
+document.querySelector('#lb-reset').addEventListener('click', () => {
+  if (confirm('Réinitialiser le classement ?')) {
+    localStorage.removeItem('memory-scores');
+    refreshLeaderboard();
+  }
+});
+
 refreshLeaderboard();

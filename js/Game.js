@@ -22,11 +22,11 @@ export class Game {
     document.querySelector('#end-screen').classList.remove('hidden')
     document.querySelector('#end-message').textContent = won ? 'Bravo !' : 'Dommage !';
     document.querySelector('#end-coups').textContent = this.#historiques.length / 2 + ' coups';
-    document.querySelector('#end-time').textContent = 'Temps : '+ this.#cmp +' sec';
+    document.querySelector('#end-time').textContent = 'Temps : ' + (this.#cmp / 100).toFixed(2) + ' sec';
 
     if (won) {
       const scores = JSON.parse(localStorage.getItem('memory-scores') || '[]');
-      scores.push({ name: this.#pseudo, difficulty: this.#difficulty, time: this.#cmp });
+      scores.push({ name: this.#pseudo, difficulty: this.#difficulty, time: +(this.#cmp / 100).toFixed(2), coups: this.#historiques.length / 2 });
       localStorage.setItem('memory-scores', JSON.stringify(scores));
     }
 
@@ -57,9 +57,9 @@ export class Game {
     }
     domManager.createCards(copie)
     this.#ref = setInterval(() => {
-      this.#cmp++
-      document.querySelector('#chrono').textContent = this.#cmp
-    }, 1000);
+      this.#cmp++;
+      document.querySelector('#chrono').textContent = (this.#cmp / 100).toFixed(2);
+    }, 10);
 
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
@@ -104,6 +104,7 @@ export class Game {
     let i = 0;
 
     const step = () => {
+      if (!this.#enReplay) return;
       if (i >= history.length) {
         this.#enReplay = false;
         document.querySelector('#abandon').classList.remove('hidden');
@@ -127,5 +128,9 @@ export class Game {
       }, 800);
     };
     setTimeout(step, 500);
+  }
+
+  stopReplay() {
+    this.#enReplay = false;
   }
 }

@@ -183,14 +183,38 @@ header h1 {
   cursor: pointer;                                                                                                                                                                                            
 }                                                                                                                                                                                                               
 
-#abandon:hover {                                                                                                                                                                                                
-  background-color: var(--color-btn-danger-hover);                                                                                                                                                            
+#abandon:hover {
+  background-color: var(--color-btn-danger-hover);
+}
+
+.replay-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--color-btn-primary);
+  border: 1.5px solid var(--color-btn-primary);
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.replay-button:hover {
+  background-color: var(--color-btn-primary);
+  color: var(--color-text-white);
 }
 
 .game-timer {
-  font-size: 1.125rem;
-  font-family: monospace;                                                                                                                                                                                       
+  font-size: 0.875rem;
+  font-family: monospace;
+  font-weight: 700;
   color: var(--color-timer);
+  background-color: var(--color-bg-panel-2);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1.5px solid var(--color-border);
+  letter-spacing: 0.05em;
+  min-width: 5rem;
+  text-align: center;
 }                                                                                                                                                                                                               
                                                                                                                                                                                                               
 /* ── Game board ── */
@@ -361,6 +385,23 @@ header h1 {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-text-heading);
+}
+
+#lb-reset {
+  padding: 0.35rem 0.85rem;
+  background-color: transparent;
+  color: var(--color-btn-danger);
+  border: 1px solid var(--color-btn-danger);
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#lb-reset:hover {
+  background-color: var(--color-btn-danger);
+  color: var(--color-text-white);
 }
 
 .leaderboard-header select {
