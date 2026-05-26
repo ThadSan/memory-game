@@ -30,7 +30,22 @@ document.querySelector('.game-form').addEventListener('submit', async function (
 });
 
 document.querySelector('#abandon').addEventListener('click', () => {
+  if (game.isPaused()) {
+    game.resume();
+    document.querySelector('#pause').textContent = '⏸ Pause';
+  }
   game.endGame(false);
+});
+
+document.querySelector('#pause').addEventListener('click', () => {
+  const btn = document.querySelector('#pause');
+  if (game.isPaused()) {
+    game.resume();
+    btn.textContent = '⏸ Pause';
+  } else {
+    game.pause();
+    btn.textContent = '▶ Reprendre';
+  }
 });
 
 document.querySelector('#themeToggle').addEventListener('click', () => {
@@ -39,6 +54,10 @@ document.querySelector('#themeToggle').addEventListener('click', () => {
 });
 
 document.querySelector('#btn-replay').addEventListener('click', () => {
+  if (game.isPaused()) {
+    game.resume();
+    document.querySelector('#pause').textContent = '⏸ Pause';
+  }
   document.querySelector('#end-screen').classList.add('hidden');
   document.querySelectorAll('.card').forEach(card => card.classList.remove('flip'));
   game.replay();
@@ -49,6 +68,7 @@ document.querySelector('#btn-new-game').addEventListener('click', () => {
   document.querySelector('#end-screen').classList.add('hidden');
   document.querySelector('.setup-form').classList.remove('hidden');
   document.querySelector('.leaderboard').classList.remove('hidden');
+  document.querySelector('#pause').textContent = '⏸ Pause';
   domManager.hideFlipButton();
   domManager.stopGameMusic();
   refreshLeaderboard();

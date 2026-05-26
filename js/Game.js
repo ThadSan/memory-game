@@ -12,6 +12,7 @@ export class Game {
   #historiques=[]
   #enReplay = false;
   #gameEnded=false;
+  #paused=false;
 
   async endGame(won) {
     if (this.#gameEnded) return;
@@ -46,6 +47,7 @@ export class Game {
     this.#cmp = 0;
     this.#pairesRestantes = difficulty;
     this.#gameEnded = false;
+    this.#paused = false;
 
     const img = imageCollections[collection]
     const diff = img.slice(0, difficulty);
@@ -64,6 +66,7 @@ export class Game {
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
         if (this.#enReplay) return;
+        if (this.#paused) return;
         if (this.#click == null) {
           this.#historiques.push([...document.querySelectorAll('.card')].indexOf(card));
           this.#click = card;
@@ -92,6 +95,27 @@ export class Game {
         }
       })
     })
+  }
+
+  pause() {
+    if (this.#gameEnded || this.#enReplay || this.#paused) return;
+    this.#paused = true;
+    clearInterval(this.#ref);
+    document.querySelector('.game-board').classList.add('paused');
+  }
+
+  resume() {
+    if (!this.#paused) return;
+    this.#paused = false;
+    document.querySelector('.game-board').classList.remove('paused');
+    this.#ref = setInterval(() => {
+      this.#cmp++;
+      document.querySelector('#chrono').textContent = (this.#cmp / 100).toFixed(2);
+    }, 10);
+  }
+
+  isPaused() {
+    return this.#paused;
   }
 
   replay() {

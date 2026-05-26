@@ -444,4 +444,28 @@ header h1 {
 .lb-name { font-weight: 600; color: var(--color-text-heading); }
 .lb-time { text-align: right; font-weight: 600; color: var(--color-timer); width: 1%; white-space: nowrap; }.lb-empty { text-align: center; color: var(--color-text-mute); padding: 1.5rem 0; font-style: italic; }
 
-                                                    
+
+/* ── Pause ── */
+#pause {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--color-btn-primary);
+  border: 1.5px solid var(--color-btn-primary);
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#pause:hover {
+  background-color: var(--color-btn-primary);
+  color: var(--color-text-white);
+}
+
+.game-board.paused .card:not(.flip) .card-inner {
+  visibility: hidden;
+}
+
+.game-board.paused .card {
+  cursor: not-allowed;
+}
