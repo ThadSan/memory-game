@@ -42,15 +42,15 @@ export class Game {
   startGame(id, pseudo, difficulty, collection, domManager) {
     this.#id = id;
     this.#pseudo = pseudo;
-    this.#difficulty = difficulty;
+    this.#difficulty = parseInt(difficulty);
     this.#historiques = [];
     this.#cmp = 0;
-    this.#pairesRestantes = difficulty;
+    this.#pairesRestantes = parseInt(difficulty);
     this.#gameEnded = false;
     this.#paused = false;
 
     const img = imageCollections[collection]
-    const diff = img.slice(0, difficulty);
+    const diff = img.slice(0, parseInt(difficulty));
     const copie = diff.concat(diff)
 
     for (let i = copie.length - 1; i > 0; i--) {
@@ -120,6 +120,7 @@ export class Game {
 
   replay() {
     document.querySelector('#abandon').classList.add('hidden');
+    document.querySelector('#pause').classList.add('hidden');
     document.querySelector('#stop-replay').classList.remove('hidden');
 
     this.#enReplay = true;
@@ -132,6 +133,7 @@ export class Game {
       if (i >= history.length) {
         this.#enReplay = false;
         document.querySelector('#abandon').classList.remove('hidden');
+        document.querySelector('#pause').classList.remove('hidden');
         document.querySelector('#stop-replay').classList.add('hidden');
         document.querySelector('#end-screen').classList.remove('hidden')
         return;
@@ -156,5 +158,6 @@ export class Game {
 
   stopReplay() {
     this.#enReplay = false;
+    document.querySelector('#pause').classList.remove('hidden');
   }
 }

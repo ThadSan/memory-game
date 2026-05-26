@@ -69,6 +69,7 @@ document.querySelector('#btn-new-game').addEventListener('click', () => {
   document.querySelector('.setup-form').classList.remove('hidden');
   document.querySelector('.leaderboard').classList.remove('hidden');
   document.querySelector('#pause').textContent = '⏸ Pause';
+  document.querySelector('#pause').classList.remove('hidden');
   domManager.hideFlipButton();
   domManager.stopGameMusic();
   refreshLeaderboard();
