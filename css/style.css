@@ -1,390 +1,575 @@
-/* ── Variables de couleurs ── */                                                                                                                                                                               
-:root, html[data-theme="dark"] {                                                                                                                                                                                
-  --color-bg-page: oklch(0.208 0.04 265.755);                                                                                                                                                                   
-  --color-bg-panel: oklch(0.279 0.037 260.031);                                                                                                                                                                 
-  --color-bg-panel-2: oklch(0.32 0.033 260.031);                                                                                                                                                                
-  --color-bg-input: oklch(0.551 0.023 264.364);                                                                                                                                                                 
-  --color-bg-card-front: oklch(0.372 0.039 257.287);                                                                                                                                                            
-  --color-bg-card-back: oklch(1 0 89.876);                                                                                                                                                                      
-                                                                                                                                                                                                                
-  --color-border-input: oklch(0.551 0.023 264.364);                                                                                                                                                             
-  --color-border-input-focus: oklch(0.872 0.009 258.338);                                                                                                                                                       
-  --color-border-card: oklch(0.446 0.037 257.281);                                                                                                                                                              
-  --color-border: oklch(0.42 0.03 260);                                                                                                                                                                       
-                                                                                                                                                                                                                
-  --color-text-title: oklch(0.696 0.149 162.48);                                                                                                                                                                
-  --color-text-heading: oklch(0.929 0.013 255.508);                                                                                                                                                             
-  --color-text-label: oklch(0.869 0.02 252.894);                                                                                                                                                                
-  --color-text-input: oklch(0.869 0.02 252.894);                                                                                                                                                                
-  --color-text-mute: oklch(0.68 0.02 252.894);                                                                                                                                                                  
-  --color-text-white: oklch(1 0 89.876);                                                                                                                                                                        
-                                                                                                                                                                                                                
-  --color-btn-primary: oklch(0.508 0.105 165.612);                                                                                                                                                            
-  --color-btn-primary-hover: oklch(0.596 0.127 163.225);                                                                                                                                                        
-  --color-btn-danger: oklch(0.577 0.215 27.325);                                                                                                                                                                
-  --color-btn-danger-hover: oklch(0.505 0.19 27.518);                                                                                                                                                           
-                                                                                                                                                                                                                
-  --color-timer: oklch(0.773 0.153 163.223);                                                                                                                                                                    
-  --color-gold: oklch(0.82 0.13 85);                                                                                                                                                                            
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-html[data-theme="light"] {                                                                                                                                                                                      
-  --color-bg-page: oklch(0.96 0.01 250);
-  --color-bg-panel: oklch(1 0 0);                                                                                                                                                                               
-  --color-bg-panel-2: oklch(0.94 0.01 250);                                                                                                                                                                     
-  --color-bg-input: oklch(0.92 0.012 250);
-  --color-bg-card-front: oklch(0.88 0.012 250);                                                                                                                                                                 
-  --color-bg-card-back: oklch(0.99 0.005 250);                                                                                                                                                                
-  --color-border-input: oklch(0.78 0.015 250);                                                                                                                                                                  
-  --color-border-input-focus: oklch(0.5 0.02 250);                                                                                                                                                            
-  --color-border-card: oklch(0.75 0.015 250);                                                                                                                                                                   
-  --color-border: oklch(0.84 0.012 250);                                                                                                                                                                      
-  --color-text-title: oklch(0.52 0.14 162.48);                                                                                                                                                                  
-  --color-text-heading: oklch(0.25 0.015 250);                                                                                                                                                                
-  --color-text-label: oklch(0.4 0.015 250);                                                                                                                                                                     
-  --color-text-input: oklch(0.25 0.015 250);                                                                                                                                                                  
-  --color-text-mute: oklch(0.5 0.012 250);                                                                                                                                                                      
-  --color-btn-primary: oklch(0.55 0.14 165);                                                                                                                                                                  
-  --color-btn-primary-hover: oklch(0.48 0.16 165);                                                                                                                                                              
-  --color-timer: oklch(0.55 0.15 163);                                                                                                                                                                          
-  --color-gold: oklch(0.6 0.14 80);                                                                                                                                                                             
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-/* ── Reset & base ── */                                                                                                                                                                                        
-*, *::before, *::after {                                                                                                                                                                                      
+/* ================================================
+   Memory Game — Stylesheet
+   Direction : Terminal Élégant
+   Fonts: Outfit (UI) + JetBrains Mono (chiffres)
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* ── Variables ── */
+:root,
+html[data-theme="dark"] {
+  /* Fonds */
+  --color-bg-page:       oklch(0.13 0.025 265);
+  --color-bg-panel:      oklch(0.19 0.028 262);
+  --color-bg-panel-2:    oklch(0.23 0.025 262);
+  --color-bg-input:      oklch(0.27 0.022 262);
+  --color-bg-card-front: oklch(0.20 0.03  260);
+  --color-bg-card-back:  oklch(0.97 0.005 260);
+
+  /* Bordures */
+  --color-border-input:       oklch(0.38 0.025 262);
+  --color-border-input-focus: oklch(0.70 0.12  163);
+  --color-border-card:        oklch(0.32 0.028 260);
+  --color-border:             oklch(0.30 0.022 262);
+
+  /* Textes */
+  --color-text-title:   oklch(0.72 0.155 163);
+  --color-text-heading: oklch(0.93 0.012 255);
+  --color-text-label:   oklch(0.80 0.018 255);
+  --color-text-input:   oklch(0.85 0.015 255);
+  --color-text-mute:    oklch(0.58 0.018 255);
+  --color-text-white:   oklch(0.98 0 0);
+
+  /* Boutons */
+  --color-btn-primary:       oklch(0.52 0.13  163);
+  --color-btn-primary-hover: oklch(0.62 0.15  163);
+  --color-btn-danger:        oklch(0.58 0.21  27);
+  --color-btn-danger-hover:  oklch(0.50 0.18  27);
+
+  /* Accents */
+  --color-timer: oklch(0.76 0.155 163);
+  --color-gold:  oklch(0.82 0.14   84);
+
+  /* Ombres & effets */
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --shadow-card:  0 6px 20px rgba(0, 0, 0, 0.5);
+  --radius-sm:    0.375rem;
+  --radius-md:    0.6rem;
+  --radius-lg:    0.9rem;
+
+  /* Motif fond */
+  --bg-dot-color: oklch(0.25 0.02 262);
+}
+
+html[data-theme="light"] {
+  --color-bg-page:       oklch(0.94 0.012 250);
+  --color-bg-panel:      oklch(0.99 0.004 250);
+  --color-bg-panel-2:    oklch(0.93 0.010 250);
+  --color-bg-input:      oklch(0.90 0.010 250);
+  --color-bg-card-front: oklch(0.86 0.012 250);
+  --color-bg-card-back:  oklch(0.99 0.003 250);
+
+  --color-border-input:       oklch(0.76 0.014 250);
+  --color-border-input-focus: oklch(0.48 0.13  163);
+  --color-border-card:        oklch(0.74 0.013 250);
+  --color-border:             oklch(0.82 0.010 250);
+
+  --color-text-title:   oklch(0.44 0.14  163);
+  --color-text-heading: oklch(0.20 0.012 250);
+  --color-text-label:   oklch(0.36 0.013 250);
+  --color-text-input:   oklch(0.22 0.012 250);
+  --color-text-mute:    oklch(0.50 0.010 250);
+  --color-text-white:   oklch(0.98 0 0);
+
+  --color-btn-primary:       oklch(0.52 0.14  165);
+  --color-btn-primary-hover: oklch(0.44 0.16  165);
+  --color-btn-danger:        oklch(0.58 0.21  27);
+  --color-btn-danger-hover:  oklch(0.50 0.18  27);
+
+  --color-timer: oklch(0.50 0.15  163);
+  --color-gold:  oklch(0.55 0.14   80);
+
+  --shadow-panel: 0 4px 20px rgba(0, 0, 0, 0.10);
+  --shadow-card:  0 4px 14px rgba(0, 0, 0, 0.12);
+  --bg-dot-color: oklch(0.84 0.010 250);
+}
+
+/* ── Sélection de texte ── */
+:root,
+html[data-theme="dark"] {
+  ::selection {
+    background-color: oklch(0.52 0.13 163 / 0.40);
+    color: oklch(0.93 0.012 255);
+  }
+}
+
+html[data-theme="light"] {
+  ::selection {
+    background-color: oklch(0.52 0.14 165 / 0.28);
+    color: oklch(0.20 0.012 250);
+  }
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;                                                                                                                                                                                                    
+  margin: 0;
   padding: 0;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
+}
+
 .hidden { display: none !important; }
 
-/* ── Body ── */
+/* ── Body — fond avec grille de points ── */
 body {
-  display: flex;                                                                                                                                                                                                
+  display: flex;
   flex-direction: column;
-  align-items: center;                                                                                                                                                                                          
-  justify-content: flex-start;                                                                                                                                                                                
+  align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
   background-color: var(--color-bg-page);
-  padding: 1rem;                                                                                                                                                                                                
-  font-family: sans-serif;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-/* ── Header ── */
-header h1 {
-  font-size: 2.25rem;                                                                                                                                                                                           
-  font-weight: 700;
-  color: var(--color-text-title);                                                                                                                                                                               
-  text-align: center;                                                                                                                                                                                           
+  background-image: radial-gradient(var(--bg-dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 1.5rem 1rem 3rem;
+  font-family: 'Outfit', sans-serif;
+  color: var(--color-text-label);
 }
-                                                                                                                                                                                                                
-#themeToggle {                                                                                                                                                                                                
+
+/* ── Header ── */
+header {
+  margin-bottom: 0.25rem;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  text-align: center;
+  letter-spacing: -0.02em;
+  /* légère lueur émeraude sous le titre */
+  text-shadow: 0 0 28px oklch(0.52 0.13 163 / 0.35);
+}
+
+/* ── Theme toggle ── */
+#themeToggle {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  background: var(--color-bg-panel-2);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  z-index: 50;
+}
+
+#themeToggle:hover {
+  background-color: var(--color-bg-input);
+  transform: rotate(20deg);
+}
+
+/* ── Animation "floating" ── */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-5px);  }
 }
 
 /* ── Setup form panel ── */
 .setup-form {
-  margin-top: 1.5rem;
-  padding: 2rem;
+  margin-top: 1.75rem;
+  padding: 2rem 2.25rem;
   background-color: var(--color-bg-panel);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);                                                                                                                                                                     
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
   width: 100%;
-  max-width: 56rem;                                                                                                                                                                                             
-}                                                                                                                                                                                                             
-                                                                                                                                                                                                                
-.setup-form h2 {                                                                                                                                                                                              
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--color-text-heading);                                                                                                                                                                             
+  max-width: 56rem;
+
+  animation: float-gentle 5s ease-in-out infinite;
 }
-                                                                                                                                                                                                                
-/* ── Form ── */                                                                                                                                                                                              
+
+.setup-form h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-heading);
+  letter-spacing: -0.01em;
+}
+
+/* ── Form ── */
 .game-form {
   display: flex;
-  flex-direction: column;                                                                                                                                                                                       
-  gap: 1rem;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
 .game-form label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 500;                                                                                                                                                                                             
-  color: var(--color-text-label);
-  margin-bottom: 0.25rem;                                                                                                                                                                                       
-}                                                                                                                                                                                                             
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-mute);
+  margin-bottom: 0.3rem;
+}
 
 .game-form input,
 .game-form select {
-  display: block;                                                                                                                                                                                               
+  display: block;
   width: 100%;
-  padding: 0.5rem 0.75rem;                                                                                                                                                                                      
-  border: 1px solid var(--color-border-input);                                                                                                                                                                
-  border-radius: 0.375rem;                                                                                                                                                                                      
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  color: var(--color-text-input);                                                                                                                                                                               
-  background-color: var(--color-bg-input);                                                                                                                                                                      
-  font-size: 0.875rem;
-  outline: none;                                                                                                                                                                                                
-}                                                                                                                                                                                                             
-                                                                                                                                                                                                                
-.game-form input:focus,
-.game-form select:focus {                                                                                                                                                                                       
-  border-color: var(--color-border-input-focus);                                                                                                                                                              
-  box-shadow: 0 0 0 2px var(--color-border-input);
-}                                                                                                                                                                                                               
-
-.game-form button[type="submit"] {                                                                                                                                                                              
-  width: 100%;                                                                                                                                                                                                
-  display: flex;
-  justify-content: center;                                                                                                                                                                                      
-  padding: 0.5rem 1rem;
-  border: none;                                                                                                                                                                                                 
-  border-radius: 0.375rem;                                                                                                                                                                                    
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);                                                                                                                                                                     
-  font-size: 0.875rem;
-  font-weight: 500;                                                                                                                                                                                             
-  color: var(--color-text-white);                                                                                                                                                                               
-  background-color: var(--color-btn-primary);
-  cursor: pointer;                                                                                                                                                                                              
-  outline: none;                                                                                                                                                                                              
-}                                                                                                                                                                                                               
-
-.game-form button[type="submit"]:hover {                                                                                                                                                                        
-  background-color: var(--color-btn-primary-hover);                                                                                                                                                           
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-input);
+  color: var(--color-text-input);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* ── Game area ── */                                                                                                                                                                                           
+.game-form input:focus,
+.game-form select:focus {
+  border-color: var(--color-border-input-focus);
+  box-shadow: 0 0 0 3px oklch(0.52 0.13 163 / 0.18);
+}
+
+.game-form button[type="submit"] {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-white);
+  background-color: var(--color-btn-primary);
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px oklch(0.52 0.13 163 / 0.30);
+}
+
+.game-form button[type="submit"]:hover {
+  background-color: var(--color-btn-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px oklch(0.52 0.13 163 / 0.40);
+}
+
+.game-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* ── Game area ── */
 .game-area {
-  width: 100%;                                                                                                                                                                                                  
-  max-width: 56rem;                                                                                                                                                                                           
+  width: 100%;
+  max-width: 56rem;
   margin-top: 2rem;
 }
 
-.game-area-header {                                                                                                                                                                                             
+.game-area-header {
   display: flex;
-  align-items: center;                                                                                                                                                                                          
-  justify-content: space-around;                                                                                                                                                                              
-  margin-bottom: 1rem;
-}                                                                                                                                                                                                               
-
-#abandon {                                                                                                                                                                                                      
-  padding: 0.5rem 1rem;                                                                                                                                                                                       
-  background-color: var(--color-btn-danger);
-  color: var(--color-text-white);
-  font-weight: 500;                                                                                                                                                                                             
-  border: none;
-  border-radius: 0.375rem;                                                                                                                                                                                      
-  cursor: pointer;                                                                                                                                                                                            
-}                                                                                                                                                                                                               
-
-#abandon:hover {
-  background-color: var(--color-btn-danger-hover);
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
+/* ── Bouton abandon ── */
+#abandon {
+  padding: 0.5rem 1.1rem;
+  background-color: transparent;
+  color: var(--color-btn-danger);
+  border: 1.5px solid var(--color-btn-danger);
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+#abandon:hover {
+  background-color: var(--color-btn-danger);
+  color: var(--color-text-white);
+  transform: translateY(-1px);
+}
+
+/* ── Bouton replay ── */
 .replay-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.1rem;
   background-color: transparent;
   color: var(--color-btn-primary);
   border: 1.5px solid var(--color-btn-primary);
-  border-radius: 0.375rem;
-  font-weight: 500;
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
 }
 
 .replay-button:hover {
   background-color: var(--color-btn-primary);
   color: var(--color-text-white);
+  transform: translateY(-1px);
 }
 
+/* ── Pause ── */
+#pause {
+  padding: 0.5rem 1.1rem;
+  background-color: transparent;
+  color: var(--color-btn-primary);
+  border: 1.5px solid var(--color-btn-primary);
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+#pause:hover {
+  background-color: var(--color-btn-primary);
+  color: var(--color-text-white);
+  transform: translateY(-1px);
+}
+
+/* Timer*/
 .game-timer {
-  font-size: 0.875rem;
-  font-family: monospace;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-timer);
   background-color: var(--color-bg-panel-2);
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-sm);
   border: 1.5px solid var(--color-border);
-  letter-spacing: 0.05em;
-  min-width: 5rem;
+  letter-spacing: 0.08em;
+  min-width: 5.5rem;
   text-align: center;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-/* ── Game board ── */
+  /* lueur subtile sur le timer */
+  box-shadow: 0 0 10px oklch(0.52 0.13 163 / 0.15);
+}
+
+/* Game board*/
 .game-board {
   display: grid;
-  gap: 1rem;                                                                                                                                                                                                    
+  gap: 1rem;
   justify-items: center;
-  grid-template-columns: repeat(4, 1fr);                                                                                                                                                                        
-}                                                                                                                                                                                                               
+  grid-template-columns: repeat(4, 1fr);
+}
 
-/* ── Cards ── */                                                                                                                                                                                               
-.card {                                                                                                                                                                                                       
-  perspective: 1000px;
+/* état pause : masquer les cartes non retournées*/
+.game-board.paused .card:not(.flip) .card-inner {
+  visibility: hidden;
+}
+
+.game-board.paused .card {
+  cursor: not-allowed;
+}
+
+/* Cartes*/
+.card {
+  perspective: 1200px;
   width: 8rem;
-  height: 8rem;                                                                                                                                                                                                 
+  height: 8rem;
   cursor: pointer;
-  border-radius: 0.5rem;                                                                                                                                                                                        
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);                                                                                                                                                                   
-}                                                                                                                                                                                                               
+  border-radius: var(--radius-md);
+}
 
-@media (min-width: 768px) {                                                                                                                                                                                     
-  .card {                                                                                                                                                                                                     
+@media (min-width: 768px) {
+  .card {
     width: 10rem;
     height: 10rem;
-  }                                                                                                                                                                                                             
+  }
 }
-                                                                                                                                                                                                                
-.card-inner {                                                                                                                                                                                                 
+
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;                                                                                                                                                                                 
+  transition: transform 0.55s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  transform-style: preserve-3d;
 }
-                                                                                                                                                                                                                
-.card.flip .card-inner {                                                                                                                                                                                      
-  transform: rotateY(180deg);
-}                                                                                                                                                                                                               
 
-.card-front,                                                                                                                                                                                                    
-.card-back {                                                                                                                                                                                                  
+/* légère élévation au survol des cartes non retournées*/
+.card:not(.flip):hover .card-inner {
+  transform: translateY(-3px) rotateY(5deg);
+}
+
+.card.flip .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 0.5rem;
-  overflow: hidden;                                                                                                                                                                                             
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
-                                                                                                                                                                                                                
-.card-front {                                                                                                                                                                                                 
-  background-color: var(--color-bg-card-front);
-  border: 2px solid var(--color-border-card);
-  display: flex;                                                                                                                                                                                                
-  align-items: center;
-  justify-content: center;                                                                                                                                                                                      
-}                                                                                                                                                                                                             
 
-.card-back {                                                                                                                                                                                                    
-  transform: rotateY(180deg);
-  background-color: var(--color-bg-card-back);                                                                                                                                                                  
-  display: flex;                                                                                                                                                                                              
+/* back carte : motif géométrique hexagonal subtil*/
+.card-front {
+  background-color: var(--color-bg-card-front);
+  border: 1.5px solid var(--color-border-card);
+  display: flex;
   align-items: center;
   justify-content: center;
-}                                                                                                                                                                                                               
+  box-shadow: var(--shadow-card);
 
-.card-front img,                                                                                                                                                                                                
-.card-back img {                                                                                                                                                                                              
+  /* motif losanges sur le dos*/
+  background-image:
+    linear-gradient(135deg, oklch(0.30 0.03 260 / 0.5) 25%, transparent 25%),
+    linear-gradient(225deg, oklch(0.30 0.03 260 / 0.5) 25%, transparent 25%),
+    linear-gradient(315deg, oklch(0.30 0.03 260 / 0.5) 25%, transparent 25%),
+    linear-gradient(45deg,  oklch(0.30 0.03 260 / 0.5) 25%, transparent 25%);
+  background-size: 24px 24px;
+}
+
+html[data-theme="light"] .card-front {
+  background-image:
+    linear-gradient(135deg, oklch(0.78 0.012 250 / 0.6) 25%, transparent 25%),
+    linear-gradient(225deg, oklch(0.78 0.012 250 / 0.6) 25%, transparent 25%),
+    linear-gradient(315deg, oklch(0.78 0.012 250 / 0.6) 25%, transparent 25%),
+    linear-gradient(45deg,  oklch(0.78 0.012 250 / 0.6) 25%, transparent 25%);
+  background-size: 24px 24px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: var(--color-bg-card-back);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.card-front img,
+.card-back img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem;
-}                                                                                                                                                                                                               
+  border-radius: var(--radius-md);
+}
 
-/* ── Écran de fin ── */                                                                                                                                                                                        
-#end-screen {                                                                                                                                                                                                 
+/* l'écran de fin*/
+#end-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;                                                                                                                                                                                                 
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;                                                                                                                                                                                                
-  align-items: center;                                                                                                                                                                                        
-  justify-content: center;                                                                                                                                                                                      
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 100;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
 #end-panel {
   background-color: var(--color-bg-panel);
-  padding: 2rem;
-  border-radius: 0.5rem;                                                                                                                                                                                        
+  border: 1px solid var(--color-border);
+  padding: 2.25rem 2.5rem;
+  border-radius: var(--radius-lg);
   text-align: center;
-  display: flex;                                                                                                                                                                                                
-  flex-direction: column;                                                                                                                                                                                     
-  gap: 1rem;                                                                                                                                                                                                    
-  color: var(--color-text-heading);
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-#end-panel button {
-  padding: 0.5rem 1rem;
-  border: none;                                                                                                                                                                                                 
-  border-radius: 0.375rem;
-  background-color: var(--color-btn-primary);                                                                                                                                                                   
-  color: var(--color-text-white);                                                                                                                                                                             
-  font-weight: 500;                                                                                                                                                                                             
-  cursor: pointer;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-#end-panel button:hover {
-  background-color: var(--color-btn-primary-hover);
-}
-
-#end-screen {
-  position: fixed;                                                                                                                                                                                              
-  top: 0; left: 0;                                                                                                                                                                                            
-  width: 100%; height: 100%;                                                                                                                                                                                    
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;                                                                                                                                                                                                
-  align-items: center;                                                                                                                                                                                        
-  justify-content: center;
-  z-index: 100;                                                                                                                                                                                                 
-}
-                                                                                                                                                                                                                
-#end-panel {                                                                                                                                                                                                  
-  background-color: var(--color-bg-panel);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  text-align: center;                                                                                                                                                                                           
   display: flex;
-  flex-direction: column;                                                                                                                                                                                       
-  gap: 1rem;                                                                                                                                                                                                  
+  flex-direction: column;
+  gap: 1.1rem;
   color: var(--color-text-heading);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  min-width: 18rem;
+  animation: slideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-#end-panel button {                                                                                                                                                                                             
-  padding: 0.5rem 1rem;
-  border: none;                                                                                                                                                                                                 
-  border-radius: 0.375rem;                                                                                                                                                                                    
+#end-panel button {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
   background-color: var(--color-btn-primary);
   color: var(--color-text-white);
-  font-weight: 500;                                                                                                                                                                                             
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
-}                                                                                                                                                                                                               
-                                                                                                                                                                                                              
-#end-panel button:hover {
-  background-color: var(--color-btn-primary-hover);
+  transition: background-color 0.2s, transform 0.15s;
+  box-shadow: 0 2px 12px oklch(0.52 0.13 163 / 0.30);
 }
 
-/* ── Leaderboard ── */
+#end-panel button:hover {
+  background-color: var(--color-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* leaderboard*/
 .leaderboard {
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   padding: 1.5rem 2rem;
   background-color: var(--color-bg-panel);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
   width: 100%;
   max-width: 56rem;
+
+  animation: float-gentle 5s ease-in-out infinite;
+  animation-delay: 0.8s; /* léger décalage pour un effet naturel */
 }
 
 .leaderboard-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .leaderboard-header h2 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text-heading);
+  letter-spacing: -0.01em;
+}
+
+.leaderboard-header select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-input);
+  color: var(--color-text-input);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.leaderboard-header select:focus {
+  border-color: var(--color-border-input-focus);
 }
 
 #lb-reset {
@@ -392,9 +577,10 @@ header h1 {
   background-color: transparent;
   color: var(--color-btn-danger);
   border: 1px solid var(--color-btn-danger);
-  border-radius: 0.375rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
@@ -402,17 +588,6 @@ header h1 {
 #lb-reset:hover {
   background-color: var(--color-btn-danger);
   color: var(--color-text-white);
-}
-
-.leaderboard-header select {
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--color-border-input);
-  border-radius: 0.375rem;
-  background-color: var(--color-bg-input);
-  color: var(--color-text-input);
-  font-size: 0.875rem;
-  cursor: pointer;
-  outline: none;
 }
 
 #lb-table {
@@ -423,49 +598,52 @@ header h1 {
 #lb-table th {
   text-align: left;
   padding: 0.4rem 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--color-text-mute);
   border-bottom: 1px solid var(--color-border);
 }
 
 #lb-table td {
-  padding: 0.6rem 0.75rem;
+  padding: 0.65rem 0.75rem;
   border-bottom: 1px solid var(--color-border);
   font-size: 0.9rem;
   color: var(--color-text-label);
+  transition: background-color 0.15s;
 }
 
 #lb-table tr:last-child td { border-bottom: none; }
-#lb-table tr:hover td { background-color: var(--color-bg-panel-2); }
 
-.lb-rank { font-size: 1.1rem; width: 2.5rem; }
-.lb-name { font-weight: 600; color: var(--color-text-heading); }
-.lb-time { text-align: right; font-weight: 600; color: var(--color-timer); width: 1%; white-space: nowrap; }.lb-empty { text-align: center; color: var(--color-text-mute); padding: 1.5rem 0; font-style: italic; }
-
-
-/* ── Pause ── */
-#pause {
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  color: var(--color-btn-primary);
-  border: 1.5px solid var(--color-btn-primary);
-  border-radius: 0.375rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+#lb-table tr:hover td {
+  background-color: var(--color-bg-panel-2);
 }
 
-#pause:hover {
-  background-color: var(--color-btn-primary);
-  color: var(--color-text-white);
+.lb-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  width: 2.5rem;
 }
 
-.game-board.paused .card:not(.flip) .card-inner {
-  visibility: hidden;
+.lb-name {
+  font-weight: 600;
+  color: var(--color-text-heading);
 }
 
-.game-board.paused .card {
-  cursor: not-allowed;
+.lb-time {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--color-timer);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.lb-empty {
+  text-align: center;
+  color: var(--color-text-mute);
+  padding: 1.5rem 0;
+  font-style: italic;
+  font-size: 0.9rem;
 }
